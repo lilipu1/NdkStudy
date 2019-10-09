@@ -12,5 +12,6 @@ add_library(
 #[[find_library(log-lib
         log)]]
 
+
 target_link_libraries(jni-lib
         log)
