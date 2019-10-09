@@ -1,0 +1,2 @@
+include ':app', ':myndkmodule'
+rootProject.name='NdkStudy'
