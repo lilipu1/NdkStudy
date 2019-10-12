@@ -3,6 +3,7 @@ package com.frank.ndkstudy
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.frank.lamelibrary.AudioAct
 import com.frank.myndkmodule.TestAct
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,8 +15,10 @@ class MainActivity : AppCompatActivity() {
 
         // Example of a call to a native method
         sample_text.text = stringFromJNI()
-        startActivity(Intent(this,TestAct::class.java))
+        startActivity(Intent(this,AudioAct::class.java))
     }
+
+
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
@@ -24,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     external fun stringFromJNI(): String
 
     companion object {
-
+        const val test = "TEST"
         // Used to load the 'native-lib' library on application startup.
         init {
             System.loadLibrary("native-lib")

@@ -1,2 +1,2 @@
-include ':app', ':myndkmodule'
+include ':app', ':myndkmodule', ':lamelibrary'
 rootProject.name='NdkStudy'

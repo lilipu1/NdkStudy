@@ -15,21 +15,46 @@ import java.io.File
 @RuntimePermissions
 class TestAct : AppCompatActivity() {
 
+
     companion object {
+        const val TAG = "应用层"
+        val name = "clark"
+
         init {
             System.loadLibrary("jni-lib")
         }
+
+        @JvmStatic
+        fun sayHello() {
+            Log.e(TAG, "invoke from c")
+        }
+
+        fun sayHello(name: String) {
+            Log.e(TAG, "hello,$name")
+        }
+
     }
+
+    fun printAddress(): String {
+        Log.e(TAG, "hello,$address")
+        return address
+    }
+
+
+    val address = "株洲"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_test)
         tv.text = stringFromJNI()
-        readSDCardWithPermissionCheck()
+        //readSDCardWithPermissionCheck()
         val newArray = processIntArray(intArrayOf(0, 1, 2, 3, 4))
         for (i in newArray) {
-            Log.e("来自应用层", "$i")
+            Log.e(TAG, "$i")
         }
+        invokeKotlinStaticMethod()
+        Log.e(TAG, "$name")
+        invokeKotlinMethod("nick")
     }
 
     @NeedsPermission(
@@ -54,4 +79,7 @@ class TestAct : AppCompatActivity() {
 
     external fun processIntArray(array: IntArray): IntArray
 
+    external fun invokeKotlinStaticMethod()
+
+    external fun invokeKotlinMethod(add: String)
 }
